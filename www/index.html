@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Include meta tag to ensure proper rendering and touch zooming -->
+    <meta frage="viewport" content="width=device-width, initial-scale=1">
+    <script type="text/javascript" src="js/jquery2.js"></script>
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <link rel="stylesheet" href="css/jquery.css">
+    <link rel="stylesheet" href="css/index.css">
+    
+    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="js/databaseHandler.js"></script>
+    <script type="text/javascript" src="js/cardHandler.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
+    
+    
+    <title>card_Geek_237</title>
+</head>
+<body>
+
+
+<!-- Hilfe-->
+<div data-role="page" id="help">
+    <div data-role="panel" id="helpPanel">
+        <h1>Menu</h1>
+        <ul data-role="listview" data-inset="true">
+            <li data-role="list-divider">card</li>
+            <li data-icon="star"><a href="#help">Help</a></li>
+            <li data-icon="home"><a href="#start">Start</a></li>
+            <li data-icon="plus"><a href="#addpage">Add</a></li>
+            <li data-icon="grid"><a href="#loadpage">Load</a></li>
+            <li data-icon="info"><a href="#about">About</a></li>
+        </ul>
+    </div>
+    <div data-role="header" data-position="fixed">
+        <a href="#helpPanel"
+           class="ui-btn ui-icon-bars ui-btn-icon-notext ui-corner-all ui-shadow"></a>
+        <h1>Help</h1>
+    </div>
+    <div data-role="main" class="ui-content">
+    <h1>Bitte erstmal Karten anlegen, wenn das schon gemacht wurde, bitte direkt starten</h1>
+
+    </div>
+
+    
+    <div class="footer" data-role="footer" data-position="fixed">
+        <h1>GEEK237</h1>
+    </div>
+</div>
+
+<!-- Addpage -->
+<div data-role="page" id="addpage">
+    <div data-role="panel" id="addPagePanel">
+        <h1>Menu</h1>
+        <ul data-role="listview" data-inset="true">
+            <li data-role="list-divider">card</li>
+            <li data-icon="star"><a href="#help">Help</a></li>
+            <li data-icon="home"><a href="#start">Start</a></li>
+            <li data-icon="plus"><a href="#addpage">Add</a></li>
+            <li data-icon="grid"><a href="#loadpage">Load</a></li>
+            <li data-icon="info"><a href="#about">About</a></li>
+        </ul>
+    </div>
+    <div data-role="header" data-position="fixed">
+        <a href="#addPagePanel"
+           class="ui-btn ui-icon-bars ui-btn-icon-notext ui-corner-all ui-shadow"></a>
+        <h1>Add card</h1>
+    </div>
+    <div data-role="main" class="ui-content">
+        <form>
+            <div class="ui-field-contain">
+                <label for="txtfrage">frage:</label>
+                <input type="text" id="txtfrage" data-clear-btn="true"/>
+                <label for="txtantwort">antwort:</label>
+                <input type="text" id="txtantwort" data-clear-btn="true"/>
+                <label for="btnAdd"></label>
+                <a class="ui-btn ui-icon-plus ui-btn-icon-left"
+                   id="btnAdd" onclick="addcard()">Add</a>
+                   
+            </div>
+        </form>
+    </div>
+    <div class="footer" data-role="footer" data-position="fixed">
+        <h1>GEEK237</h1>
+    </div>
+</div>
+
+<!-- start -->
+<div class="footer" data-role="page" id="start">
+    <div data-role="panel" id="startPanel">
+        <h1>Menu</h1>
+        <ul data-role="listview" data-inset="true">
+            <li data-role="list-divider">card</li>
+            <li data-icon="star"><a href="#help">Help</a></li>
+            <li data-icon="home"><a href="#start">Start</a></li>
+            <li data-icon="plus"><a href="#addpage">Add</a></li>
+            <li data-icon="grid"><a href="#loadpage">Load</a></li>
+            <li data-icon="info"><a href="#about">About</a></li>
+        </ul>
+    </div>
+    <div data-role="header" data-position="fixed">
+        <a href="#startPanel"
+           class="ui-btn ui-icon-bars ui-btn-icon-notext ui-corner-all ui-shadow"></a>
+        <h1>Start cards</h1>
+    </div>
+    <div data-role="main" class="ui-content">
+        <form class="ui-filterable">
+            <input data-type="search" id="txtKeyword"/>
+        </form>
+        <ul data-role="listview" data-filter="true"
+            data-input="#txtKeyword"
+            data-inset="true"
+            id="lstfrage"
+        >
+
+            <li data-filtertext="Was ist dein Name?"> 
+                <a> 
+                    <h3>
+                        <span> Es gibt noch keinen Card vorhanden!!!</span>
+                    </h3>
+                </a>
+            </li>
+        </ul>
+
+        <div data-role="popup" id="popupreponse">
+            <div data-role="header">
+                <a class="ui-btn ui-icon-check ui-btn-icon-notext ui-corner-all" data-rel="back"></a>
+                <h1>Antwort</h1>
+            </div>
+            <div data-role="main" class="ui-content">
+                <h3 id="antwortf"></h3>
+                <a class="ui-btn ui-icon-check ui-btn-icon-right ui-btn-inline"
+                   href="#start"
+                >OK</a>
+            </div>
+        </div>
+
+
+    </div>
+
+    
+    <div class="footer" data-role="footer" data-position="fixed">
+        <h1>GEEK237</h1>
+    </div>
+</div>
+
+
+
+<!-- Loadpage -->
+<div data-role="page" id="loadpage">
+    <div data-role="panel" id="loadPagePanel">
+        <h1>Menu</h1>
+        <ul data-role="listview" data-inset="true">
+            <li data-role="list-divider">card</li>
+            <li data-icon="star"><a href="#help">Help</a></li>
+            <li data-icon="home"><a href="#start">Start</a></li>
+            <li data-icon="plus"><a href="#addpage">Add</a></li>
+            <li data-icon="grid"><a href="#loadpage">Load</a></li>
+            <li data-icon="info"><a href="#about">About</a></li>
+        </ul>
+    </div>
+    <div data-role="header" data-position="fixed">
+        <a href="#loadPagePanel"
+           class="ui-btn ui-icon-bars ui-btn-icon-notext ui-corner-all ui-shadow"></a>
+        <h1>Load cards</h1>
+    </div>
+    <div data-role="main" class="ui-content">
+        <form class="ui-filterable">
+            <input data-type="search" id="txtKeyword2"/>
+        </form>
+        <ul data-role="listview" data-filter="true"
+            data-input="#txtKeyword2"
+            data-inset="true"
+            id="lstcards"
+        >
+        </ul>
+        <div data-role="popup" id="popupUpdateDelete">
+            <div data-role="header">
+                <a class="ui-btn ui-icon-delete ui-btn-icon-notext ui-corner-all" data-rel="back"></a>
+                <h1>Options</h1>
+            </div>
+            <div data-role="main" class="ui-content">
+                <a class="ui-btn ui-icon-delete ui-btn-icon-left ui-btn-inline"
+                   onclick="deletecard()"
+                >Delete</a>
+                <a class="ui-btn ui-icon-edit ui-btn-icon-left ui-btn-inline"
+                   href="#updatedialog"
+                >Update</a>
+            </div>
+        </div>
+    </div>
+    <div class="footer" data-role="footer" data-position="fixed">
+        <h1>GEEK237</h1>
+    </div>
+</div>
+
+<!-- Updatedialog -->
+<div data-role="dialog" id="updatedialog">
+    <div data-role="header">
+        <h1>Update card</h1>
+    </div>
+    <div data-role="main" class="ui-content">
+        <form>
+            <div class="ui-field-contain">
+                <label for="txtNewfrage">frage:</label>
+                <input type="text" id="txtNewfrage" data-clear-btn="true"/>
+                <label for="txtNewantwort">antwort:</label>
+                <input type="text" id="txtNewantwort" data-clear-btn="true"/>
+                <label for="btnUpdate"></label>
+                <a class="ui-btn ui-icon-plus ui-btn-icon-left"
+                   id="btnUpdate" onclick="updatecard()">Update</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+<!-- About -->
+<div data-role="page" id="about">
+    <div data-role="panel" id="aboutPanel">
+        <h1>Menu</h1>
+        <ul data-role="listview" data-inset="true">
+            <li data-role="list-divider">card</li>
+            <li data-icon="star"><a href="#help">Help</a></li>
+            <li data-icon="home"><a href="#start">Start</a></li>
+            <li data-icon="plus"><a href="#addpage">Add</a></li>
+            <li data-icon="grid"><a href="#loadpage">Load</a></li>
+            <li data-icon="info"><a href="#about">About</a></li>
+        </ul>
+    </div>
+    <div data-role="header" data-position="fixed">
+        <a href="#aboutPanel"
+           class="ui-btn ui-icon-bars ui-btn-icon-notext ui-corner-all ui-shadow"></a>
+        <h1>About card</h1>
+    </div>
+    <div data-role="main" class="ui-content">
+        <br />
+        <br />
+        <br />
+        <h1 id="aboutw">Card237 ist eine Webandwendung, die zum Lernen entwickelt wurde. Dabei müssen Sie Karteien erstellen und direkt wenn Sie möchten, anfangen zu lernen.</h1>
+        <br />
+        <br />
+        <br />
+        
+        <h1> Autor: Donald Donchi</h1>
+
+        <img src="img/profile-img.jpg" alt="avtar">
+
+    </div>
+
+    
+    <div class="footer" data-role="footer" data-position="fixed">
+        <h1>GEEK237</h1>
+    </div>
+</div>
+
+</body>
+</html>
